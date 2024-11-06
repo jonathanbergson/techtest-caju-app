@@ -1,8 +1,17 @@
-import {Form} from "react-router-dom";
+import {Form, useNavigation} from "react-router-dom";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import {useEffect, useState} from "react";
 
 export default function FormContact({ contact = {}, onCancel = () => {}, onSubmit = () => {} }) {
+
+  const [isDisabled, setDisabled] = useState(false);
+  const navigation = useNavigation();
+  useEffect(() => {
+    if (navigation.state === "submitting") setDisabled(true)
+    else setDisabled(false)
+  }, [navigation]);
+
   const {
     register,
     handleSubmit,
@@ -21,6 +30,7 @@ export default function FormContact({ contact = {}, onCancel = () => {}, onSubmi
           aria-label="First name"
           className={errors.firstName && "input-error"}
           defaultValue={contact?.firstName}
+          disabled={isDisabled}
           placeholder="First"
           type="text"
           {...register("firstName", { required: true, minLength: 3 })}
@@ -34,6 +44,7 @@ export default function FormContact({ contact = {}, onCancel = () => {}, onSubmi
           aria-label="Last name"
           className={errors.lastName && "input-error"}
           defaultValue={contact?.lastName}
+          disabled={isDisabled}
           placeholder="Last"
           type="text"
           {...register("lastName", {required: true, minLength: 3})}
@@ -46,6 +57,7 @@ export default function FormContact({ contact = {}, onCancel = () => {}, onSubmi
         <input
           className={errors.twitter && "input-error"}
           defaultValue={contact?.twitter}
+          disabled={isDisabled}
           placeholder="@nickname"
           type="text"
           {...register("twitter", {required: true, minLength: 3})}
@@ -58,13 +70,14 @@ export default function FormContact({ contact = {}, onCancel = () => {}, onSubmi
         <textarea
           name="notes"
           defaultValue={contact?.notes}
+          disabled={isDisabled}
           rows={6}
         />
       </label>
 
       <p>
-        <button type="button" onClick={onCancel}>Cancel</button>
-        <button type="submit">Save</button>
+        <button disabled={isDisabled} type="button" onClick={onCancel}>Cancel</button>
+        <button disabled={isDisabled} type="submit">Save</button>
       </p>
     </Form>
   )
