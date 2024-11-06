@@ -25,6 +25,7 @@ export default function Filter() {
         name="q"
         defaultValue={q}
         onChange={(event) => {
+          // TODO: criar um debounce para evitar muitas requisições
           const isFirstSearch = q == null
           submit(event.currentTarget.form, {
             replace: !isFirstSearch,

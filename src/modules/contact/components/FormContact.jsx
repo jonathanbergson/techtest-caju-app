@@ -7,7 +7,7 @@ export default function FormContact({ contact = {}, onCancel = () => {}, onSubmi
   const [isDisabled, setDisabled] = useState(false)
   const navigation = useNavigation()
   useEffect(() => {
-    if (navigation.state === "submitting") setDisabled(true)
+    if (navigation.state === "loading" || navigation.state === "submitting") setDisabled(true)
     else setDisabled(false)
   }, [navigation])
 

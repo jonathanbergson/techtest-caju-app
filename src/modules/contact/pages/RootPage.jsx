@@ -21,7 +21,7 @@ export default function RootPage() {
         <NavList contacts={contacts} />
       </Sidebar>
 
-      <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
+      <div id="detail">
         <Outlet />
       </div>
     </>

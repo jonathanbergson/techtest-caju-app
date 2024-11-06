@@ -22,7 +22,7 @@ export default function NavList({ contacts = [] }) {
                   <>{contact.firstName} {contact.lastName}</>
                 ) : (
                   <i>No Name</i>
-                )}{" "}
+                )}
                 {contact.favorite && <span>*</span>}
               </NavLink>
             </li>
