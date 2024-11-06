@@ -26,7 +26,7 @@ export default {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("${baseUrl}/contacts", {
+    const response = await fetch(`${baseUrl}/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
