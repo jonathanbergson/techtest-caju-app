@@ -19,6 +19,10 @@ export default {
     const id = params.contactId;
     const response = await fetch(`${baseUrl}/contacts/${id}`);
     const contact = await response.json();
+
+    if (response.status !== 200)
+      throw new Error(contact.message);
+
     return { contact };
   },
 

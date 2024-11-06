@@ -1,53 +1,58 @@
 import {Form} from "react-router-dom";
 import PropTypes from "prop-types";
+import { useForm } from "react-hook-form";
 
-export default function FormContact({ contact = {}, onCancel, onSubmit }) {
-  const handleCancel = () => {
-    if (typeof onCancel === 'function') onCancel();
-  }
-  const handleSubmit = () => {
-    // TODO: validate form
-    if (typeof onSubmit === 'function') onSubmit();
+export default function FormContact({ contact = {}, onCancel = () => {}, onSubmit = () => {} }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+
+  const submit = (event) => {
+    handleSubmit(() => onSubmit(event))(event)
   }
 
   return (
-    <Form method="post" id="contact-form">
-      <p>
-        <span>Name</span>
+    <Form method="post" id="contact-form" onSubmit={submit}>
+      <label>
+        <span>First Name</span>
         <input
-          placeholder="First"
           aria-label="First name"
-          type="text"
-          name="firstName"
+          className={errors.firstName && "input-error"}
           defaultValue={contact?.firstName}
-        />
-        <input
-          placeholder="Last"
-          aria-label="Last name"
+          placeholder="First"
           type="text"
-          name="lastName"
-          defaultValue={contact?.lastName}
+          {...register("firstName", { required: true, minLength: 3 })}
         />
-      </p>
+      </label>
+      <p className="input-error-message">{errors.firstName && <span>This field is required</span>}</p>
+
+      <label>
+        <span>Last Name</span>
+        <input
+          aria-label="Last name"
+          className={errors.lastName && "input-error"}
+          defaultValue={contact?.lastName}
+          placeholder="Last"
+          type="text"
+          {...register("lastName", {required: true, minLength: 3})}
+        />
+      </label>
+      <p className="input-error-message">{errors.lastName && <span>This field is required</span>}</p>
+
       <label>
         <span>Twitter</span>
         <input
-          type="text"
-          name="twitter"
-          placeholder="@nickname"
+          className={errors.twitter && "input-error"}
           defaultValue={contact?.twitter}
+          placeholder="@nickname"
+          type="text"
+          {...register("twitter", {required: true, minLength: 3})}
         />
       </label>
-      {/*<label>*/}
-      {/*  <span>Avatar URL</span>*/}
-      {/*  <input*/}
-      {/*    placeholder="https://example.com/avatar.jpg"*/}
-      {/*    aria-label="Avatar URL"*/}
-      {/*    type="text"*/}
-      {/*    name="avatar"*/}
-      {/*    defaultValue={contact?.avatar}*/}
-      {/*  />*/}
-      {/*</label>*/}
+      <p className="input-error-message">{errors.twitter && <span>This field is required</span>}</p>
+
       <label>
         <span>Notes</span>
         <textarea
@@ -56,9 +61,10 @@ export default function FormContact({ contact = {}, onCancel, onSubmit }) {
           rows={6}
         />
       </label>
+
       <p>
-        <button type="button" onClick={handleCancel}>Cancel</button>
-        <button type="submit" onClick={handleSubmit}>Save</button>
+        <button type="button" onClick={onCancel}>Cancel</button>
+        <button type="submit">Save</button>
       </p>
     </Form>
   )
