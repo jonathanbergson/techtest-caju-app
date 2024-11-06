@@ -1,13 +1,15 @@
 import {redirect} from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_ENDPOINT;
+
 export default {
   async getContacts({ request }) {
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
 
     const response = q
-        ? await fetch(`http://localhost:3000/api/contacts?q=${q}`)
-        : await fetch(`http://localhost:3000/api/contacts`)
+        ? await fetch(`${baseUrl}/contacts?q=${q}`)
+        : await fetch(`${baseUrl}/contacts`)
 
     const contacts = await response.json();
     return { contacts, q };
@@ -15,7 +17,7 @@ export default {
 
   async getContact({ params }) {
     const id = params.contactId;
-    const response = await fetch(`http://localhost:3000/api/contacts/${id}`);
+    const response = await fetch(`${baseUrl}/contacts/${id}`);
     const contact = await response.json();
     return { contact };
   },
@@ -24,7 +26,7 @@ export default {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:3000/api/contacts", {
+    const response = await fetch("${baseUrl}/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +43,7 @@ export default {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
 
-    await fetch(`http://localhost:3000/api/contacts/${id}`, {
+    await fetch(`${baseUrl}/contacts/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +59,7 @@ export default {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
 
-    await fetch(`http://localhost:3000/api/contacts/${id}`, {
+    await fetch(`${baseUrl}/contacts/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +74,7 @@ export default {
 
   async deleteContact({ params }) {
     const id = params.contactId;
-    await fetch(`http://localhost:3000/api/contacts/${id}`, {
+    await fetch(`${baseUrl}/contacts/${id}`, {
       method: "DELETE",
     });
     return redirect("/");
