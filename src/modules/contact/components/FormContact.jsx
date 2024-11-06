@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import {useEffect, useState} from "react";
 
 export default function FormContact({ contact = {}, onCancel = () => {}, onSubmit = () => {} }) {
-
   const [isDisabled, setDisabled] = useState(false);
   const navigation = useNavigation();
   useEffect(() => {

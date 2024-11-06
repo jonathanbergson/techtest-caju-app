@@ -389,12 +389,13 @@ i {
 }
 
 .input-error {
-  border: 2px solid indianred !important;
+  box-shadow: 0 0px 1px indianred, 0 1px 2px indianred;
   color: indianred;
+  outline-color: indianred;
 }
 
 .input-error-message {
-  margin: -0.5rem 0 0 8rem;
+  color: indianred;
   font-size: 0.8rem;
-  color: indianred
+  margin: -0.5rem 0 0 8rem;
 }
