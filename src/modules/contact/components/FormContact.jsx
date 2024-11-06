@@ -1,15 +1,15 @@
-import {Form, useNavigation} from "react-router-dom";
-import PropTypes from "prop-types";
-import { useForm } from "react-hook-form";
-import {useEffect, useState} from "react";
+import { Form, useNavigation } from "react-router-dom"
+import PropTypes from "prop-types"
+import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
 
 export default function FormContact({ contact = {}, onCancel = () => {}, onSubmit = () => {} }) {
-  const [isDisabled, setDisabled] = useState(false);
-  const navigation = useNavigation();
+  const [isDisabled, setDisabled] = useState(false)
+  const navigation = useNavigation()
   useEffect(() => {
     if (navigation.state === "submitting") setDisabled(true)
     else setDisabled(false)
-  }, [navigation]);
+  }, [navigation])
 
   const {
     register,

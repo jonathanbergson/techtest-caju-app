@@ -1,20 +1,13 @@
-import { Form, useLoaderData } from "react-router-dom";
-import Avatar from "@/modules/contact/components/Avatar.jsx";
-import Info from "@/modules/contact/components/Info.jsx";
-
-// export async function action({ request, params }) {
-//   const formData = await request.formData();
-//   return updateContact(params.contactId, {
-//     favorite: formData.get("favorite") === "true",
-//   });
-// }
+import { Form, useLoaderData } from "react-router-dom"
+import Avatar from "@/modules/contact/components/Avatar.jsx"
+import Info from "@/modules/contact/components/Info.jsx"
 
 export default function DetailPage() {
-  const { contact } = useLoaderData();
+  const { contact } = useLoaderData()
   const handleDelete = (event) => {
     if (!confirm("Please confirm you want to delete this record."))
-      event.preventDefault();
-  };
+      event.preventDefault()
+  }
 
   return (
     <div id="contact">
@@ -41,5 +34,5 @@ export default function DetailPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

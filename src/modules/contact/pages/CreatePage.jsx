@@ -1,15 +1,15 @@
-import { useNavigate, useSubmit } from "react-router-dom";
-import FormContact from "@/modules/contact/components/FormContact.jsx";
+import { useNavigate, useSubmit } from "react-router-dom"
+import FormContact from "@/modules/contact/components/FormContact.jsx"
 
 export default function CreatePage() {
-  const navigate = useNavigate();
-  const submit = useSubmit();
+  const navigate = useNavigate()
+  const submit = useSubmit()
 
   const handleCancel = () => {
     navigate(-1)
   }
   const handleSubmit = (event) => {
-    submit(event.target);
+    submit(event.target)
   }
 
   return (
@@ -17,5 +17,5 @@ export default function CreatePage() {
       onCancel={handleCancel}
       onSubmit={handleSubmit}
     />
-  );
+  )
 }

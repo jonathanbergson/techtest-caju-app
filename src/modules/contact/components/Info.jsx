@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import Favorite from "@/modules/contact/components/Favorite.jsx";
+import PropTypes from "prop-types"
+import Favorite from "@/modules/contact/components/Favorite.jsx"
 
 export default function Info({ contact }) {
   return (

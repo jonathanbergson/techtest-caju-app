@@ -1,10 +1,10 @@
-import {NavLink} from "react-router-dom";
-import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom"
+import PropTypes from "prop-types"
 
 export default function NavList({ contacts = [] }) {
   const navLinkClassName = ({isActive, isPending}) => {
-    if (isActive) return "active";
-    if (isPending) return "pending";
+    if (isActive) return "active"
+    if (isPending) return "pending"
     return ""
   }
 
@@ -29,7 +29,7 @@ export default function NavList({ contacts = [] }) {
           ))}
         </ul>
       </nav>
-    );
+    )
   }
 
   return (

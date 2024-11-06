@@ -1,11 +1,11 @@
-import {Link, Outlet, useLoaderData, useNavigation} from "react-router-dom";
-import Sidebar from "@/components/Sidebar.jsx";
-import NavList from "@/modules/contact/components/NavList.jsx";
-import Filter from "@/modules/contact/components/Filter.jsx";
+import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom"
+import Sidebar from "@/components/Sidebar.jsx"
+import NavList from "@/modules/contact/components/NavList.jsx"
+import Filter from "@/modules/contact/components/Filter.jsx"
 
 export default function RootPage() {
-  const { contacts } = useLoaderData();
-  const navigation = useNavigation();
+  const { contacts } = useLoaderData()
+  const navigation = useNavigation()
 
   return (
     <>
@@ -25,5 +25,5 @@ export default function RootPage() {
         <Outlet />
       </div>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import {Form} from "react-router-dom";
-import PropTypes from "prop-types";
+import { Form } from "react-router-dom"
+import PropTypes from "prop-types"
 
 export default function Favorite({ isFavorite = false }) {
   return (
@@ -16,9 +16,9 @@ export default function Favorite({ isFavorite = false }) {
         {isFavorite ? "★" : "☆"}
       </button>
     </Form>
-  );
+  )
 }
 
 Favorite.propTypes = {
   isFavorite: PropTypes.bool,
-};
+}
